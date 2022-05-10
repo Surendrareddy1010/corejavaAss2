@@ -1,0 +1,58 @@
+package assignment2java;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class EmployeeUtil {
+	
+	Employee []aemp;
+	
+	public EmployeeUtil(Employee []aemp) {
+		this.aemp = aemp;
+	}
+	
+	//sort method based on dept
+		public Employee[] sortDept(){
+			for(int i=0;i<aemp.length;i++){
+				for(int j=0;j<aemp.length - i -1;j++){
+					if(aemp[j].getDept().compareTo(aemp[j+1].getDept())>0){
+						Employee etmp = aemp[j];
+						aemp[j] = aemp[j+1];
+						aemp[j+1] = etmp;
+					}
+				}
+			}	
+			return aemp;
+		}
+		
+		//sort method based on salary
+		public Employee[] sortSalary(){
+			for(int i=0;i<aemp.length;i++){
+				for(int j=0;j<aemp.length - i -1;j++){
+					if(aemp[j].getSalary() > aemp[j+1].getSalary()) {
+						Employee etmp = aemp[j];
+						aemp[j] = aemp[j+1];
+						aemp[j+1] = etmp;	
+					}
+				}
+			}	
+			return aemp;
+		}
+		
+		//Printing employee details whose salary greater than average salary
+		public List<Employee> empSalaryGreaterThanAvgSalary(){
+			float sal = 0f;
+			List<Employee> list = new ArrayList<Employee>();
+			for(int i=0;i<aemp.length;i++){
+				sal += aemp[i].getSalary();
+			}
+			float avgSal = sal/aemp.length;
+			System.out.println("Avg salary is  : "+avgSal);
+			for(int i=0;i<aemp.length;i++) {
+				if(aemp[i].getSalary()>=avgSal) {
+					list.add(aemp[i]);
+				}
+			}
+			return list;
+		}
+}
